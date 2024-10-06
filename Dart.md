@@ -144,3 +144,113 @@ Map<String, String> things = new Map<String, String>();
 things.putIfAbsent('car', () => 'white');
 print(things); // {car: white}
 ```
+
+### Flow Control
+
+- Assert
+
+```Dart
+int age = 43;
+assert(age == 43);// checking true/false
+assert(age == 15);// unhandled exception: Failed assertion: 'age == 15':is not true
+
+```
+
+- IF ELSE
+
+```Dart
+
+int age = 43;
+if(age == 43) print ('You are 43 years old');
+if(age != 43) print ('You are not 43 years old'); // ! =
+
+if(age == 43) {
+    print ('You are 43 years old');
+} else {
+    print ('You are not 43 years old')
+};
+```
+
+- Scope
+
+```Dart
+// Scope: variable visibility ==>> same concept as global variable/class variable/privity variable
+int age = 43;
+
+if(age == 43) {
+    //Failed, unhandled exception: NoSuchMethodError: No top-level getter 'hasBills' declared
+    print ('You are 43 years old and has bills ${hasBills}');
+} else {
+    bool hasBills = true;
+    print ('You are not 43 years old and has bills ${hasBills}')
+};
+```
+
+- Switch
+
+```Dart
+int age = 18;
+
+switch(age){
+
+    case 18:
+        print ('You are 18 years old');
+        break;
+    case 21:
+        print ('You are 18 years old');
+        break;
+    default:
+        print ('Nothing special about this age');
+        break;
+}
+
+```
+
+- Loops
+
+```Dart
+int value;
+int init = 1;
+int max = 5;
+
+value = init;
+
+//Run at least one time
+do {
+    print(value);
+    value++;
+} while (value < max);
+
+//
+while (value <= max){
+    print(value);
+    value++;
+}
+
+//Infinite loop
+value = init;
+do{
+    if(value == 3){
+        print('Value is 3');
+        continue;
+    }
+    if(value > 5){
+        print('Value is greater then 5');
+        break;
+    }
+}while(true);
+```
+
+- For Each
+
+```Dart
+List people = ['Bryan', 'Heather', 'chris'];
+
+for(int i = 0; i < people.length; i++){
+    print('Person at ${i} is ${people[i]}');
+}
+// anonymous function
+people.forEach((String person) {
+    print(person);
+});
+```
