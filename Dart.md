@@ -331,6 +331,7 @@ int calcYears({int age, int multiplier}){
 
 List people = ['Bryan', 'Heather', 'chris'];
 
+// .where with anonymous function creates a new list and filter by switch case
 people.where((String name) {
     switch(name){
         case 'Chris':
@@ -340,5 +341,60 @@ people.where((String name) {
         case 'Heather':
             return true;
     }
-}).forEach(print);
+}).forEach(print);// Heather chris
+```
+
+### Error Handling
+
+- Exceptions
+
+```Dart
+//Error is a program failure
+//Exception - can be handled
+
+int age;
+int dogyears = 7;
+
+try{
+    int age;
+    int dogyears = 7;
+    print(age * dogears);
+}cath(e){
+    print('There was an error: ${e.toString()}');
+}finally{
+    print('complete');
+}
+
+```
+
+```Dart
+
+
+main(List<String> arguments) {
+
+  try {
+    int age;
+    int dogYears = 8;
+
+    if(dogYears != 7) throw new Exception('dog years must be 7');
+    // catch by "catch(e)", and exception message passed into catch block
+
+    if(age == null) throw new NullThrownError();
+
+    print(age * dogYears);
+  }
+  on NullThrownError {
+    print('The value was null!!!');
+  }
+  on NoSuchMethodError {
+    print('Sorry no such method');
+  }
+  catch (e) {
+    print('Unknown error: ${e.toString()}');
+  }
+  finally {
+    print('complete');
+  }
+
+}
 ```
