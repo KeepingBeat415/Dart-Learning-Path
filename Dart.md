@@ -254,3 +254,91 @@ people.forEach((String person) {
     print(person);
 });
 ```
+
+### Functions
+
+- Basic Functions
+
+```Dart
+main(List<String> arguments){
+    sayHello('Bryan');
+
+    print('Your age in dog years is ${dogYears(43)}');
+}
+
+void sayHello(String name){
+    print('Hello ${name}');
+}
+
+int dogYears(int age){
+    return age * 7;
+}
+
+```
+
+- Optional Parameters
+
+```Dart
+main(List<String> arguments){
+    sayHello('Bryan');
+}
+// Parameters with bracket means optional parameters
+void sayHello([String name = '']){
+    if(name.isNotEmpty) name = name.padLeft(name.length + 1);
+    print('Hello ${name}');
+}
+```
+
+- Name Parameters
+
+```Dart
+
+main(List<String> arguments){
+    int footage = squartFeet(length: 10, width: 5);
+
+    download('myfile'); // Download myfile on port 80
+    download('myfile', port: 90);// Download myfile on port 90
+}
+// Parameters assign value by name
+void squartFeet({int width, int length}){
+    return width * length;
+}
+
+// Optional parameters assign value by name
+void download(String file, {int port: 80}){
+    print('Download ${file} on port ${port}');
+}
+```
+
+- Functions as objects
+
+```Dart
+main(List<String> arguments){
+    var dogyears = calcYears;
+
+    print('Your age in dog years is ${dogyear(age: 43, multiplier: 7)}');
+}
+
+int calcYears({int age, int multiplier}){
+    return age * multiplier;
+}
+
+```
+
+- Anonymous Functions
+
+```Dart
+
+List people = ['Bryan', 'Heather', 'chris'];
+
+people.where((String name) {
+    switch(name){
+        case 'Chris':
+            return true;
+        case 'Bryan':
+            return false;
+        case 'Heather':
+            return true;
+    }
+}).forEach(print);
+```
