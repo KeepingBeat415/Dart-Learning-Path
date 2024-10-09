@@ -401,6 +401,9 @@ main(List<String> arguments) {
 
 ### Imports
 
+- Imports can be added as Package.
+- List dependencies: Pubspec.yaml
+
 ```Dart
 //Synchronous means one at a time.
 //Asynchronous means many at once.
@@ -413,5 +416,53 @@ main(List<String> arguments){
     http.get(url).then((response){
         print("Response status code: ${response.statusCode}");
     });
+}
+```
+
+### Classes
+
+```Dart
+class Animal{
+
+   //variable begin with '_' means privity class variable
+   String _name = '';
+
+   Animal(){
+       print('Default constructor');
+   }
+   Animal(String name){
+    _name = name;
+   }
+
+   void sayHello(){
+       if(_name.isEmpty){
+           print('Hello');
+       }
+       else{
+           print('Hello ${_name} nice to meet you');
+       }
+   }
+}
+```
+
+```Dart
+import 'package:classes3/dog.dart';
+main(List<String> arguments) {
+
+  Dog bob = new Dog(6, 'Bob');
+
+  print('${bob.name} is ${bob.ageInDogYears()} dog years old ');// 42 dog years old
+}
+
+class Dog {
+  int age = 1;
+  String name = 'fiddo';
+
+  Dog(int age, String name) {
+    this.age = age;
+    this.name = name;
+  }
+
+  int ageInDogYears() => age * 7;
 }
 ```
