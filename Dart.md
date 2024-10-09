@@ -398,3 +398,20 @@ main(List<String> arguments) {
 
 }
 ```
+
+### Imports
+
+```Dart
+//Synchronous means one at a time.
+//Asynchronous means many at once.
+
+import 'package:http/http.dart' as http;
+
+main(List<String> arguments){
+    var url = "http://www.voidrealms.com";
+    // Asynchronous
+    http.get(url).then((response){
+        print("Response status code: ${response.statusCode}");
+    });
+}
+```
