@@ -103,6 +103,13 @@ print(things); // [1, cats, true]
 List<int> numbers = new List<int>();
 ```
 
+Using 'if' statements in Lists
+
+````Dart
+//No curly braces around the if statement
+final myList = [1, 2, if (condition) 3];
+final myList = [1, 2, if (condition) 3 else 4];
+
 - Set
 
 ```Dart
@@ -113,7 +120,7 @@ numbers.add(1);
 numbers.add(2);
 numbers.add(3);
 print(numbers);//{1, 2, 3}
-```
+````
 
 - Queue
 
@@ -169,6 +176,9 @@ if(age == 43) {
 } else {
     print ('You are not 43 years old')
 };
+
+//ternary expressions
+true ? 'this' : 'that';
 ```
 
 - Scope
