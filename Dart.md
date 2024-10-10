@@ -466,3 +466,59 @@ class Dog {
   int ageInDogYears() => age * 7;
 }
 ```
+
+### Scope
+
+```Dart
+
+main(List<String> arguments){
+    Animal cat = new Animal('fluffy', 16, 'Short Hair');
+    //class public variable can re-assign out of class
+    cat.breed = 'mixed';
+
+    //class private variable cannot
+    //cat._name = 'muffin'; => Error
+
+    Animal dog = new Animal('Rango', 6);
+    dog.name = 'fiddo';//setter
+    print(dog.name);//getter
+
+    //static function no instance, call directly
+    Animal.run();
+
+}
+
+class Animal{
+    //class scope
+    String name = '';
+    //class private variable begin with '_'
+    int _age = 0;
+    String breed = '';
+    //static shared across all instances of the class
+    static int _count = 0;
+
+    Animal(String name, int age, String breed){
+        //add this. point to class scope
+        //for public variable, there's name collision, so we need to add "this."
+        this.name = name;
+        //private variable is able to assign directly
+        _age = age;
+        this.name = name;
+        //every time constructor called, _counter +1
+        _counter++;
+    }
+
+    //private function
+    void _display(String message){
+        print ('This is private function.');
+    }
+    //Getters and Setters function for access private variable
+    String get name => _name;
+    void set name(String value) => _name = value;
+
+    //static doesn't have this. keyword
+    static void run() {
+        print('running');
+    }
+}
+```
