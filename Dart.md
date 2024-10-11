@@ -64,6 +64,13 @@ print(parts); // Bryan Cairns
 const String txt = 'Hello World';
 ```
 
+- Final Variable
+
+```dart
+//final variable can't reassign new value, but can call function for modify such as, using .shuffle()
+final String text;
+```
+
 - User Input
 
 ```dart
@@ -179,6 +186,11 @@ if(age == 43) {
 
 //ternary expressions
 true ? 'this' : 'that';
+
+//Spreading Values (...)
+const numbers = [1, 2, 3];
+const moreNums = [numbers, 4]; // [[1,2,3], 4]
+const moreNums =[...numbers, 4] // [1, 2, 3, 4]
 ```
 
 - Scope
@@ -530,5 +542,147 @@ class Animal{
     static void run() {
         print('running');
     }
+}
+```
+
+### Polymorphism
+
+```Dart
+
+import 'package:poly1/feline.dart';
+
+main(List<String> arguments) {
+
+
+  Feline cat = new Feline();
+
+  cat.breath();// inheritance from Animal class
+
+  cat.test();//override function
+
+}
+
+class Animal {
+
+  bool isAlive = true;
+
+  void breath() => print('breathing');
+
+}
+
+class Mamal extends Animal {
+
+  bool hasHair = true;
+  bool hasBackbone = true;
+  bool isWarmBlooded = true;
+
+  void walk() => print('Walking');
+
+  void test() {
+    print('testing in mamal');
+    //super.test();
+  }
+
+}
+
+import 'mamal.dart';
+
+class Feline extends Mamal {
+
+  bool hasClaws = true;
+
+  void growl() => print('grrrrr');
+
+  @override//override parent function
+  void test() {
+    print('testing in feline');
+    super.test();//call parent class function using 'super.'
+  }
+
+}
+
+class Dragon {
+  bool breathsFire = true;
+
+  void fly() => print('flying');
+
+
+  void test() {
+    print('Test called in Dragon');
+  }
+}
+
+class Ghost {
+  bool walksThoughWalls = true;
+
+  void test() {
+    print('Test called in Ghost');
+  }
+}
+
+import 'feline.dart';
+import 'dragon.dart';
+import 'ghost.dart';
+
+//Mixins --> multiple inheritance
+class Monster extends Feline with Ghost, Dragon {
+
+  bool glowInDark = true;
+
+  @override
+  void test() {
+    print('Test called in Monster');
+    super.test();//will randomly call one of extra extends parent function
+  }
+}
+```
+
+- Interfaces
+
+```Dart
+
+class Employee {
+
+  String name = '';
+
+  void test() => print('test');
+}
+
+//implements needs all getters, setters function
+//when implement, need to implement specific in the Child class
+class Manager implements Employee{
+    //need to implements all variables and functions
+    String name = 'Bob';
+
+    void test () {
+        print('I am a manager');
+        //print(super.test()); cannot call parent's functions
+        print(super.toString());//nothing print, and nothing inheritance
+    }
+}
+```
+
+### Abstraction
+
+```Dart
+//build a parent constructor class, for inheritance
+abstract class Car {
+    bool hasWheels;
+    bool hasHorn;
+
+    //void honk();
+    //abstract class can have concrete function
+    void honk() => print('beep beep');
+}
+
+//Need filling out all not implement variables and functions
+class RaceCar extends Car{
+    RaceCar(){
+        this.hasHorn = true;
+        this.hasHorn = true;
+    }
+    void honk() {
+        print('honk in racecar');
+        super.honk();
 }
 ```
