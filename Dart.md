@@ -756,3 +756,86 @@ class Counter<T extends num>{
 
 }
 ```
+
+### File System
+
+- Sync vs Asynchronous
+  - Synchronous means: things will happen one at a time.
+    - For example: waiting on the queue for process
+  - Asynchronous means: all things happen same time without wait.
+    - For example: Student after school, and get out of school door
+
+```Dart
+import 'dart:io';
+
+main(List<String> arguments){
+
+    String path = '/';
+    Directory dir = new Directory(path);
+
+    if(dir.existsSync()){
+        print('exists');
+    }else{
+        print('not found');
+    }
+    //open asynchronous, call Directory Static class and creating a temp synchronously
+    Directory dir2 = Directory.systemTemp.createTempSync();
+
+    print(dir2.path);
+
+    if(dir2.existsSync()) {
+        print('Removing ${dir2.path}');
+        dir2.deleteSync();
+    }
+    else {
+        print('Could not find ${dir2.path}');
+    }
+
+    Directory dir3 = Directory.current;
+    print(dir.path);
+
+    List<FileSystemEntity> list = dir.listSync(recursive: true);
+
+    print('Entries in list: ${list.length}');
+
+    FileStat stat = value.statSync();
+    print('Path: ${ value.path}');
+    print('Type: ${stat.type}');
+    print('Changed: ${stat.changed}');
+    print('Modified: ${stat.modified}');
+    print('Accessed: ${stat.accessed}');
+    print('Mode: ${stat.mode}');// denotes the system access you have to it
+    print('Size: ${stat.size}');
+    print('');
+
+    File file = new File(dir.path + '/myfile.txt');
+
+    writeFile(file);
+    readFile(file);
+
+}
+
+void writeFile(File file){
+    //Append, Write
+    RandomAccessFile raf = file.openSync(mode: FileMode.APPEND);
+
+    raf.writeStringSync('Hello World!\r\nHow are you today?');
+    raf.flushSync();//flush buff data into file
+    raf.closeSync();
+}
+
+void readFile(File file){
+    if(!file.existsSync()){
+        print('file not found!');
+        return;
+    }
+
+    print('Reading string...');
+    print(file.readAsStringSync());
+
+    print('Reading bytes....');
+    List values = file.readAsBytesSync();
+    values.forEach((value) => print(value));
+}
+
+```
