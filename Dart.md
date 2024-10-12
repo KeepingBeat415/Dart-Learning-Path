@@ -665,7 +665,7 @@ class Manager implements Employee{
 ### Abstraction
 
 ```Dart
-//build a parent constructor class, for inheritance
+//a class has property declarations without implementations
 abstract class Car {
     bool hasWheels;
     bool hasHorn;
@@ -684,5 +684,75 @@ class RaceCar extends Car{
     void honk() {
         print('honk in racecar');
         super.honk();
+}
+```
+
+### Generics
+
+- generics
+
+```Dart
+//generics handle it and make as unknown type
+List values = [1, 2, 3, 4, 5];
+
+//class can handle a different type
+List<int> numbers = new List<int>;
+numbers.addAll([1,2,3,4]);
+
+print(numbers);//[1, 2, 3, 4]
+
+add(1, 2); //3
+add<int>(1, 2); //3
+
+//Simple Example
+void add<T>(T a, T b){
+    print(a + b);
+}
+
+//More complex
+//extends make restrict for parameter type
+void addNumbers<T extends num>(T a, T b){
+    print(a + b);
+}
+//T >> arguments type
+T add<T extends num>(T value, List<T> items){
+    T ret = value;
+    items.forEach(value){
+        ret = ret + value;
+    }
+    return ret;
+}
+```
+
+- Generic Class
+
+```Dart
+main(List<String> arguments){
+    Counter<double> doubles = new Counter<double>();
+    doubles.addAll([1.0,2.2,3.6]);
+    doubles.total();
+
+    Counter<int> ints = new Counter<int>();
+    ints.addAll([1,2,3]);
+    ints.total();
+}
+
+class Counter<T extends num>{
+    List<T> _items = new List<T>();
+
+    void addAll(Iterable<T> iterable) => _items.addAll(iterable);
+
+    void add(T value) => _items.add(value);
+
+    T elementAt(int index) => _items.elementAt(index);
+
+    void total(){
+        num ret = 0;
+        items.forEach(value){
+        ret = ret + value;
+        }
+        print(ret);
+    }
+
 }
 ```
