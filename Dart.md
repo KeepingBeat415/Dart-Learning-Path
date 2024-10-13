@@ -261,6 +261,24 @@ do{
         break;
     }
 }while(true);
+
+//Using "for" loops in lists
+final numbers = [5, 6];
+final myList = [
+    1,
+    2,
+    //for...in syntax is a special variation of the for loop that loops through multiple items in a list
+    for(final num in numbers)
+        num
+];
+//Using "map"
+final myList = [
+    1,
+    2,
+    ...numbers.map((n){
+        return n*2;
+    })
+];
 ```
 
 - For Each
@@ -536,6 +554,7 @@ class Animal{
     }
     //Getters and Setters function for access private variable
     String get name => _name;
+
     void set name(String value) => _name = value;
 
     //static doesn't have this. keyword
