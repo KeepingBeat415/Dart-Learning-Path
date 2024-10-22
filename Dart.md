@@ -295,6 +295,22 @@ people.forEach((String person) {
 });
 ```
 
+- For-in
+-
+
+```Dart
+List people = ['Bryan', 'Heather', 'chris'];
+
+for(final ps in people){
+    print('Person at ${ps}');
+}
+// anonymous function
+people.forEach((String person) {
+    print(person);
+});
+
+```
+
 ### Functions
 
 - Basic Functions
